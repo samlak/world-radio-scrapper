@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Zik FM",
+    "description": "Zik FM is wireless internet based radio station which is popular for their world music programs. They are broadcasting 24 hours a day with lots of popular world music songs. Zik FM has got some of the exciting playlists with lots of popular musical genre and their vision is also to be the radio that suits the need of their listeners.\n",
+    "location": "Dakar",
+    "country": "Sénégal",
+    "streamUrl": "https://stream.zeno.fm/z97k8ry9sxquv",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/5/35975.v12.png",
+    "website": "https://zeno.fm/radio/zikfmsenegal/"
+  },
+  {
+    "name": "Sud FM",
+    "description": "Le leadership de Sud F.M. tient a la fois de la richesse de son personnel d'encadrement (une large part est accordée a la présence des femmes dans la rédaction) et la compétence professionnelle avérée des journalistes (la majorité est issue des meilleures écoles de formation en journalisme).\n\tAfficher plus\n\n",
+    "location": "Dakar",
+    "country": "Sénégal",
+    "streamUrl": "https://stream.zenolive.com/rq40edfn3reuv.mp3",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/7/35547.v9.png",
+    "website": "http://sudfmsenradio.com/"
+  }
+]
