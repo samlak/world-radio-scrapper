@@ -24,7 +24,10 @@
     "getCountriesList": "node src/index.js getCountriesList",
     "mergeCountriesList": "node src/index.js mergeCountriesList",
     "getRadioList": "node src/index.js getRadioList",
-    "getRadioInfo": "node src/index.js getRadioInfo"
+    "mergeRadioList": "node src/index.js mergeRadioList",
+    "getRadioInfo": "node src/index.js getRadioInfo",
+    "mergeRadioInfo": "node src/index.js mergeRadioInfo",
+    "groupRadioInfo": "node src/index.js groupRadioInfo"
   },
   "author": "",
   "license": "ISC"

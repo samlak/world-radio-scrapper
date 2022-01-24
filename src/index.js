@@ -13,9 +13,23 @@ const stringFormater = (str) => {
   return result;
 }
 
-const listOfAllCountries = () => {
-  const allCountriesFilePath = path.join(__dirname, `./data/merger/all-countries.json`);
+const getMerger = (name) => {
+  const allCountriesFilePath = path.join(__dirname, `./data/merger/all-${name}.json`);
   return JSON.parse(fs.readFileSync(allCountriesFilePath));
+}
+
+const findEmptyRadioStation = (fileNames, fileEnding) => {
+  const emptyRadioStation = [];
+
+  fileNames.forEach(function (fileName) {
+    const radioFilePath = path.join(__dirname, `./data/radio-station-${fileEnding}/${fileName}-${fileEnding}.json`);
+    const radioData = JSON.parse(fs.readFileSync(radioFilePath));
+    if (radioData.length === 0) {
+      emptyRadioStation.push(fileName);
+    }
+  });
+
+  return emptyRadioStation;
 }
 
 const findRemainingCountries = async (folderName, fileEnding) => {
@@ -27,9 +41,41 @@ const findRemainingCountries = async (folderName, fileEnding) => {
     fileNames.push(fileName);
   });
 
-  const allCountriesData = listOfAllCountries();
+  const allCountriesData = getMerger('countries');
   const remainingCountries = allCountriesData.filter(country => !fileNames.includes(country.name));
-  return remainingCountries;
+
+  const emptyRadioStation = findEmptyRadioStation(fileNames, fileEnding);
+  const emptyRadioStationList = allCountriesData.filter(country => emptyRadioStation.includes(country.name)) ;
+
+  const finalList = [
+    ...remainingCountries,
+    ...emptyRadioStationList
+  ];
+
+  return finalList;
+}
+
+const findRemainingRadioList = async () => {
+  const folderPath = path.join(__dirname, `./data/radio-station-list`);
+  const filesInFolder = await fs.readdirSync(folderPath);
+  const fileNames = [];
+  filesInFolder.forEach(function (file) {
+    const fileName = file.substring(0, file.indexOf(`-list.json`));
+    fileNames.push(fileName);
+  });
+
+  const allRadioListData = getMerger('radio-station-list');
+  const remainingRadioList = allRadioListData.filter(radioStation => !fileNames.includes(radioStation.country));
+
+  const emptyRadioInfo = findEmptyRadioStation(fileNames, 'info');
+  const emptyRadioInfoList = allRadioListData.filter(radioStation => emptyRadioInfo.includes(radioStation.country));
+
+  const finalList = [
+    ...remainingRadioList,
+    ...emptyRadioInfoList
+  ];
+
+  return finalList;
 }
 
 const getCountriesList = async () => {
@@ -96,7 +142,7 @@ const getRadioList = async (option) => {
     return ;
   }
 
-  let listOfCountries = await listOfAllCountries();
+  let listOfCountries = getMerger('countries');
   if(option && option === 'resume'){
     listOfCountries = await findRemainingCountries('radio-station-list', 'list');
   }
@@ -156,60 +202,158 @@ const getRadioList = async (option) => {
   }
 }
 
-const getRadioInfo = async () => {
-  let radioList = [
-    "https://onlineradiobox.com/sn/zikfm/",
-    "https://onlineradiobox.com/sn/sudfm/",
-  ];
+const mergeRadioList = async () => {
+  const allRadioList = [];
+  const listOfCountries = getMerger('countries');
+  listOfCountries.forEach((country) => {
+    const countryFilePath = path.join(__dirname, `./data/radio-station-list/${country.name}-list.json`);
+    const countryData = JSON.parse(fs.readFileSync(countryFilePath));
+    console.log(`Merging radio list in ${country.name}`);
 
-  const radioInfo = [];
+    const allRadioUrl = [];
+    countryData.forEach((radioUrl) => {
+      return allRadioUrl.push(radioUrl)
+    });
 
-  let radioIndex = 0; 
-  while (radioIndex < radioList.length) {
-    await fetch(radioList[radioIndex])
-    .then((res) => res.text()).then(async (data) => {
-      console.log(`Scraping info of  `)
-      const $ = cheerio.load(data);
-      
-      const radioStream = $('button.station_play');
-      const radioStreamUrl = radioStream.attr('stream');
-      const radioStreamType = radioStream.attr('streamtype');
-      const radioName = radioStream.attr('radioname');
-      const radioLogo = radioStream.attr('radioimg');
-      const completeRadioLogoURL = `https:${radioLogo}`;
-      const radioLocationInfo = $('ul.breadcrumbs');
-      const radioLocation = radioLocationInfo.children().last().prev().text();
-      const radioCountry= radioLocationInfo.children().first().text();
-      const radioDescription = $('div.station__description').text();
-      const radioWebsite = $('a.station__reference--web').attr('href');
+    const formatedRadioList = {
+      country: country.name,
+      url: allRadioUrl,
+    };
 
-      const radio = {
-        name: radioName,
-        description: radioDescription,
-        location: radioLocation,
-        country: radioCountry,
-        streamUrl: radioStreamUrl,
-        streamType: radioStreamType,
-        logo: completeRadioLogoURL,
-        website: radioWebsite,
-      }
-      radioInfo.push(radio);
-    })
-    .catch((error) => console.log('Error occured when scrapping radio list.', error)); 
-    
-    radioIndex++;
-  };
-  // console.log(radioInfo)
+    return allRadioList.push(formatedRadioList);
+  });
 
-  const fileLocation = path.join(__dirname, `./data/radio-station-info/info.json`);
-  await fs.writeFile(fileLocation, JSON.stringify(radioInfo), () => 
-    console.log(`Countries in  scrapped successfully`)
+
+  const fileLocation = path.join(__dirname, `./data/merger/all-radio-station-list.json`);
+  await fs.writeFile(fileLocation, JSON.stringify(allRadioList), () => 
+    console.log(`Radio list in all countries merged successfully`)
   );
+
+} 
+
+const getRadioInfo = async (option) => {
+  if(option && option === 'status'){
+    const remainingCountries = await findRemainingCountries('radio-station-info', 'info');
+    if (remainingCountries.length  > 0) {
+      console.log(`There are ${remainingCountries.length} country(ies) radio info left to be scrapped.`);
+      return ;
+    }
+    console.log(`All countries radio info has been scrapped.`);
+    return ;
+  }
+
+  let allRadioList = getMerger('radio-station-list');
+  if(option && option === 'resume'){
+    allRadioList = await findRemainingRadioList();
+  }
+  
+  let radioListIndex = 0;
+  while (radioListIndex < allRadioList.length) {
+    const countryName = allRadioList[radioListIndex].country;
+    console.log(`Scraping radio info for ${countryName}`)
+    const radioInfo = [];
+    let radioIndex = 0; 
+    while (radioIndex < allRadioList[radioListIndex].url.length) {
+      await fetch(allRadioList[radioListIndex].url[radioIndex])
+      .then((res) => res.text()).then(async (data) => {
+        console.log(`Scraping info for radio station ${radioIndex} in ${countryName}`)
+        const $ = cheerio.load(data);
+        
+        const radioStream = $('button.station_play');
+        const radioStreamType = radioStream.attr('streamtype');
+        const radioName = radioStream.attr('radioname');
+        const radioLogo = radioStream.attr('radioimg');
+        const completeRadioLogoURL = `https:${radioLogo}`;
+        const radioLocationInfo = $('ul.breadcrumbs');
+        const radioLocation = radioLocationInfo.children().last().prev().text();
+        const radioCountry= radioLocationInfo.children().first().text();
+        const radioDescription = $('div.station__description').text();
+        const radioWebsite = $('a.station__reference--web').attr('href');
+        let radioStreamUrl = $('button.station_play').attr('stream');
+
+        if(radioStreamUrl.includes('https://onlineradiobox.com/json/')){
+          const redirectedUrl = await fetch(radioStreamUrl);
+          radioStreamUrl = redirectedUrl.url;
+        }
+
+        const radio = {
+          name: radioName,
+          description: radioDescription,
+          location: radioLocation,
+          country: radioCountry,
+          streamUrl: radioStreamUrl,
+          streamType: radioStreamType,
+          logo: completeRadioLogoURL,
+          website: radioWebsite,
+        }
+        radioInfo.push(radio);
+      })
+      .catch((error) => console.log('Error occured when scrapping radio info.', error)); 
+      
+      radioIndex++;
+    };
+
+    const fileLocation = path.join(__dirname, `./data/radio-station-info/${countryName}-info.json`);
+    await fs.writeFile(fileLocation, JSON.stringify(radioInfo), () => 
+      console.log(`Info of radio station in ${countryName} scrapped successfully`)
+    );
+
+    radioListIndex++;
+  };
 }
 
-const resume = async () => {
-  const re = await findRemainingCountries('radio-station-info', 'info');
-  console.log(re);
+const mergeRadioInfo = async () => {
+  let allRadioInfo = [];
+  const listOfCountries = getMerger('countries');
+  listOfCountries.forEach((country) => {
+    const radioInfoFilePath = path.join(__dirname, `./data/radio-station-info/${country.name}-info.json`);
+    const radioInfoData = JSON.parse(fs.readFileSync(radioInfoFilePath));
+    console.log(`Merging radio info in ${country.name}`);
+
+    radioInfoData.forEach((radioInfo) => {
+      return allRadioInfo.push(radioInfo)
+    });
+  });
+
+
+  const fileLocation = path.join(__dirname, `./data/merger/all-radio-station-info.json`);
+  await fs.writeFile(fileLocation, JSON.stringify(allRadioInfo), () => 
+    console.log(`Radio info in all countries merged successfully`)
+  );
+} 
+
+const groupRadioInfo = async () => {
+  const radioInfoMergerFilePath= path.join(__dirname, `./data/merger/all-radio-station-info.json`);
+  const radioInfoMergerData = JSON.parse(fs.readFileSync(radioInfoMergerFilePath));
+  const radioInfoByLocation = radioInfoMergerData.reduce(function (initial, current) {
+    initial[current.location] = initial[current.location] || [];
+    initial[current.location].push(current);
+    return initial;
+  }, {});
+
+  const radioInfoWithGeocode = [];
+  for (const [key, value] of Object.entries(radioInfoByLocation)) {
+    console.log(`Getting the geocode of ${key}`)
+    const encodedUrl = encodeURI(key);
+    await fetch(`https://positionstack.com/geo_api.php?query=${encodedUrl}`)
+    .then(response => response.text())
+    .then(data => {
+      const dataInJson = JSON.parse(data);
+      radioInfoWithGeocode.push({
+        location: key,
+        longitude: dataInJson.data[0].longitude,
+        latitude: dataInJson.data[0].latitude,
+        radio: value
+      })
+    })
+    .catch((error) => console.log('Error occured when grouping radio info.', error));
+  }
+
+  const fileLocation = path.join(__dirname, `./data/merger/grouped-radio-station-info.json`);
+  await fs.writeFile(fileLocation, JSON.stringify(radioInfoWithGeocode), () => 
+    console.log(`Radio info grouped successfully`)
+  );
+
 }
 
 
@@ -217,17 +361,41 @@ const resume = async () => {
 
 (async () => {
   if( argv._[0] === "getCountriesList" ){
+
     return await getCountriesList();
   } else if ( argv._[0] === "mergeCountriesList" ){
+
     return await mergeCountriesList();
   } else if ( argv._[0] === "getRadioList" ){
+
     if ( argv._[1] === "resume" ){
+
       return await getRadioList("resume");
     } else if ( argv._[1] === "status" ){
+
       return await getRadioList("status");
     }
+
     return await getRadioList();
+  } else if ( argv._[0] === "mergeRadioList" ){
+
+    return await mergeRadioList();
   } else if ( argv._[0] === "getRadioInfo" ){
+
+    if ( argv._[1] === "resume" ){
+
+      return await getRadioInfo("resume");
+    } else if ( argv._[1] === "status" ){
+
+      return await getRadioInfo("status");
+    }
+
     return await getRadioInfo();
-  }
+  }  else if ( argv._[0] === "mergeRadioInfo" ){
+
+    return await mergeRadioInfo();
+  } else if ( argv._[0] === "groupRadioInfo" ){
+
+    return await groupRadioInfo();
+  } 
 })();

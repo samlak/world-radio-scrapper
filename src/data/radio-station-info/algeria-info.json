@@ -1,0 +1,172 @@
+[
+  {
+    "name": "Radio Coran",
+    "description": "مرحبا بكم في إذاعة القرآن الكريم.Radio Coran AM 1422 is a Algerian radio station broadcasting from Algiers, Algeria, Station Airs Religious and Arabic programming.\n",
+    "location": "Algiers",
+    "country": "Algeria",
+    "streamUrl": "https://coran.ice.infomaniak.ch/coran.aac",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/6/20396.v9.png",
+    "website": "http://www.radioalgerie.dz/coran/"
+  },
+  {
+    "name": "Radio Dzair Raina",
+    "description": "Votre Radio Algerienne Sur Internet.Radio Dzair Raina is a channel on the internet radio station Radio Dzair from Algiers, Algeria, providing Algerian music.\n",
+    "location": "Algiers",
+    "country": "Algeria",
+    "streamUrl": "https://radio-dzair.net/proxy/raina?mp=/stream",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/1/20421.v9.png",
+    "website": "http://radio-dzair.com/"
+  },
+  {
+    "name": "JIL FM",
+    "description": "Jil Fm is a young and music radio, which means that in addition to the music there has informative content, cultural, and educational, its mission is to find a balance between distraction music and facts.\nMusical emissions constitute the largest programs as highly valued by this segment of the populati it, music is the most popular art and closest expectations and needs of young people in terms of cultural emotion and artistic creativity.\n\tShow more\n\n",
+    "location": "Chrea",
+    "country": "Algeria",
+    "streamUrl": "https://jil-fm.ice.infomaniak.ch/jilfm.aac",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/0/20480.v10.png",
+    "website": "http://www.radioalgerie.dz/jilfm/"
+  },
+  {
+    "name": "Radio Algerienne -  El Bahdja",
+    "description": "La Radio algérienne (officiellement : Entreprise nationale de radiodiffusion sonore, abrégée en ENRS) est une entreprise publique responsable du service public de la radiodiffusion pour l'Algérie. La Radio algérienne a été créée en 1986 lorsque son prédécesseur Radiodiffusion télévision algérienne (RTA) fondé en 1962, s'est séparé en deux entreprises distinctes, la télévision et la radiodiffusion.\n",
+    "location": "Algiers",
+    "country": "Algeria",
+    "streamUrl": "https://elbahdja.ice.infomaniak.ch/elbahdja-64.aac",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/3/20373.v4.png",
+    "website": "http://www.radioalgerie.dz/news/ar/"
+  },
+  {
+    "name": "Radio Algerienne - Chaine 3",
+    "description": "La chaîne 3, Un réseau national et international.\nInformation immédiate et fiable, Un programme adapté au rythme de vie des auditeurs. Des émissions de haute qualité.\n\nLa chaine trois grâce à son équipe dynamique vous fait découvrir et vous fait connaitre a travers ses programmes riches et varies l’Algérie.\n",
+    "location": "Algiers",
+    "country": "Algeria",
+    "streamUrl": "https://ch3.ice.infomaniak.ch/ch3-64.aac",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/0/20470.v8.png",
+    "website": "http://www.radioalgerie.dz/chaine3/"
+  },
+  {
+    "name": "Skyrock Alger",
+    "description": "Retrouve tous les sons qui cartonnent en Algérie sur Skyrock Alger !\n",
+    "location": "Algiers",
+    "country": "Algeria",
+    "streamUrl": "https://icecast.skyrock.net/s/alger_aac_64k",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/1/73951.v3.png",
+    "website": "https://skyrock.fm/"
+  },
+  {
+    "name": "Radio Algerienne - Chaine 1",
+    "description": "Radio Algerienne Chaine 1 is an internet radio station in Algiers, Algeria, providing Arabic language Public News and Sports shows.\n",
+    "location": "Algiers",
+    "country": "Algeria",
+    "streamUrl": "https://ch1.ice.infomaniak.ch/ch1-32.aac",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/9/20389.v5.png",
+    "website": "http://www.radioalgerie.dz/chaine1/"
+  },
+  {
+    "name": "Radio Algerienne - Chaine 2",
+    "description": "La Radio Chaîne 2 est une radio algérienne crée en 1948, elle se diffuse en langue berbère (kabyle). La Radio Chaîne 2 est la plus ancienne radio berbère en Algérie. Elle offre un contenu riche et varié.\n",
+    "location": "Algiers",
+    "country": "Algeria",
+    "streamUrl": "https://ch2.ice.infomaniak.ch/ch2-64.aac",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/4/43654.v4.png",
+    "website": "http://www.radioalgerie.dz/fr/chaine2"
+  },
+  {
+    "name": "Radio Algérie Internationale - إذاعة الجزائر الدولية",
+    "description": "Radio Algeria - radio algerie international\n",
+    "location": "Oran",
+    "country": "Algeria",
+    "streamUrl": "https://rai.ice.infomaniak.ch/rai-64.aac",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/5/20435.v5.png",
+    "website": "http://www.radioalgerie.dz/rai/"
+  },
+  {
+    "name": "Radio France Maghreb 2",
+    "description": "Ensemble toutes générations sur France Maghreb 2 ! L'info, le service, la musique et le divertissement sont les points fort de France Maghreb2\n",
+    "location": "Algeria",
+    "country": "Algeria",
+    "streamUrl": "https://francemaghreb2.ice.infomaniak.ch/francemaghreb2-high.mp3",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/3/43933.v5.png",
+    "website": "http://www.francemaghreb2.fr/"
+  },
+  {
+    "name": "Radio Maghreb Emergent",
+    "description": "Journal économique en ligne couvrant la région du Maghreb.\n",
+    "location": "Algiers",
+    "country": "Algeria",
+    "streamUrl": "https://radio-dzair.net/proxy/radiom?mp=/stream",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/3/20433.v8.png",
+    "website": "http://maghrebemergent.info/"
+  },
+  {
+    "name": "Radio Chaabi Dialna",
+    "description": "Radio Chaabi: Chaabi, Andalou, Hawzi, Tous les grands maitres de la chanson Algerienne\n",
+    "location": "Algiers",
+    "country": "Algeria",
+    "streamUrl": "http://mzalouk.free.fr/radio/mp3/ABDELKADER_CHAOU_YALHADRA.mp3",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/1/43931.v4.png",
+    "website": "http://www.webchaabi.com/"
+  },
+  {
+    "name": "Radio Adrar - إذاعة أدرار الجهوية",
+    "description": "قبل سنة1995 عانت ولاية أدرار عزلة إعلامية قاتلة تجلت في انعدام الجرائد وصعوبة التقاط برامج التلفزيون والإذاعة الوطنيتين واقتصار البث الإذاعي على برامج القناة الأولى فقط وإذاعة الساورة ببشار ،حيث كانت هذه الأخيرة المتنفس الوحيد لسكان الإقليم وكان صدى أدرار يصل من خلال المراسلين من أبناء المنطقة وهم السادة: محمد نويفدي واحمد جولي وعبد الناصر طبق وعبد الرحمن طاهري، بالإضافة الى مراسلي وكالة الأنباء الجزائرية وجريدتي الخبر والجمهورية.\n",
+    "location": "Adrar",
+    "country": "Algeria",
+    "streamUrl": "https://adrar.ice.infomaniak.ch/01.aac",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/7/43647.v12.png",
+    "website": "http://www.radioalgerie.dz/player/ar/live/01--Adrar"
+  },
+  {
+    "name": "Hits 1 Algérie",
+    "description": "numéro 1 sur les Hits - Just Hits & Dance !\n",
+    "location": "Algiers",
+    "country": "Algeria",
+    "streamUrl": "https://radio12.pro-fhi.net/listen-whmnrlow-acc1.mp3",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/8/89928.v9.png",
+    "website": "https://www.hits1radio.com/"
+  },
+  {
+    "name": "Radio Culture - الإذاعة الثقافيه",
+    "description": "Radio Culture Algerie est une station généraliste d'expression qui fait partie de la Radio algérienne. \nElle propose une programmation varié de services et de l'information.\nLa station Radio Culture Algerie est composé d’un groupe jeune, sérieux, dynamique et expérimenté.\n",
+    "location": "Algiers",
+    "country": "Algeria",
+    "streamUrl": "https://culture.ice.infomaniak.ch/culture.aac",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/0/43930.v6.png",
+    "website": "http://www.radioalgerie.dz/culture/"
+  },
+  {
+    "name": "K-SUN66-BLUES",
+    "description": "I've got some mind over what matters\n",
+    "location": "Algiers",
+    "country": "Algeria",
+    "streamUrl": "https://stream.zeno.fm/01c0um0fhhruv",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/5/10945.v13.png",
+    "website": "https://www.ksun66.com/blues"
+  },
+  {
+    "name": "Radio Hawana",
+    "description": "Radio Hawana\n",
+    "location": "Constantine",
+    "country": "Algeria",
+    "streamUrl": "http://manager6.streamradio.fr:1980/stream",
+    "streamType": "mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/4/105584.v1.png",
+    "website": "http://radiohawana-dz.com/"
+  }
+]
