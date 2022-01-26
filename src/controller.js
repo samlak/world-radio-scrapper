@@ -298,6 +298,7 @@ const groupRadioInfo = async () => {
         location: key,
         longitude: dataInJson.data[0].longitude,
         latitude: dataInJson.data[0].latitude,
+        timezone: dataInJson.data[0].timezone_module.offset_string,
         radio: value
       })
     })
